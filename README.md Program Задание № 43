@@ -1,0 +1,40 @@
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+ 
+    namespace Program43
+    {
+    internal class Program
+    {
+        static void Main()
+        {
+            Console.WriteLine("--- Права доступа ---\n");
+            const int R = 1, W = 2, X = 4;
+
+            int a = ReadInt("Число (0–7): ");
+            if (a is  0  ) { Console.WriteLine("Ошибка: 0–7\n"); return; }
+
+            Console.Write("Права: ");
+            bool ok = false;
+            if ((a & R) != 0) { Console.Write("R "); ok = true; }
+            if ((a & W) != 0) { Console.Write("W "); ok = true; }
+            if ((a & X) != 0) { Console.Write("X "); ok = true; }
+            if (!ok) Console.Write("нет");
+
+            Console.WriteLine($"\nBin: {Convert.ToString(a, 2).PadLeft(3, '0')}");
+        }
+
+        static int ReadInt(string p)
+        {
+            while (true)
+            {
+                Console.Write(p);
+                if (int.TryParse(Console.ReadLine()?.Trim(), out var v)) return v;
+                Console.WriteLine("Только целое.");
+            }
+        }
+    }
+    }
